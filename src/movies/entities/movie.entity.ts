@@ -4,7 +4,7 @@ export class Movie {
   public author: string;
   public rating: number;
   public year: string;
-  public genre: string [] = [];
+  public genre: string [];
 
 
   constructor(id: number,
@@ -12,13 +12,17 @@ export class Movie {
               author: string,
               rating?: number,
               year?: string,
-              genre?: string) {
+              genre?: string[]) {
     this.id = id
     this.title = title
     this.author = author
     this.rating = rating
     this.year = year
-    genre && this.genre.push(genre)
+    if (Array.isArray(genre)) {
+    this.genre = genre
+    }  else {
+      this.genre = []
+    }
   }
 
 }
