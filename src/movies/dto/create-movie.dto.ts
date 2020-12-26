@@ -1,7 +1,7 @@
 import { IsString, IsNumber } from 'class-validator';
 
 
-export class createMovieDto {
+export class CreateMovieDto {
 
   @IsString()
   title: string;
