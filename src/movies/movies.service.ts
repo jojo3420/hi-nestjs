@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
 export class MoviesService {
@@ -49,7 +50,7 @@ export class MoviesService {
     return 0;
   }
 
-  modifyMovie(id: number, movieDto: CreateMovieDto): Movie {
+  modifyMovie(id: number, movieDto: UpdateMovieDto): Movie {
     const index = this.movies.findIndex(m => m.id === id);
     if (index >= 0) {
       this.movies[index] = { ...this.movies[index], ...movieDto };
