@@ -3,7 +3,7 @@ export class Movie {
   public title: string;
   public author: string;
   public rating: number;
-  public year: string;
+  public year: number;
   public genre: string [];
 
 
@@ -11,7 +11,7 @@ export class Movie {
               title: string,
               author: string,
               rating?: number,
-              year?: string,
+              year?: number,
               genre?: string[]) {
     this.id = id
     this.title = title

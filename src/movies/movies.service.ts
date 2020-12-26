@@ -6,7 +6,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 export class MoviesService {
   private movies: Movie[] = [
     new Movie(1, '해리포터1', '조앤아줌마'),
-    new Movie(2, '반지의 제왕', '드래곤', 4, '2010', ['SF', '모험']),
+    new Movie(2, '반지의 제왕', '드래곤', 4, 2010, ['SF', '모험']),
 
   ];
 

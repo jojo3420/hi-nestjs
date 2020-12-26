@@ -1,20 +1,20 @@
 import { IsString, IsNumber } from 'class-validator';
 
-
+// DTO: Data Transfer Object
 export class CreateMovieDto {
 
   @IsString()
-  title: string;
+  readonly title: string;
 
   @IsString()
-  author: string;
-
-  @IsString()
-  year: string;
+  readonly author: string;
 
   @IsNumber()
-  rating: number;
+  readonly year: number;
+
+  @IsNumber()
+  readonly rating: number;
 
   @IsString({ each: true })
-  genre: string[];
+  readonly genre: string[];
 }
