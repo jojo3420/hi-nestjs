@@ -8,6 +8,7 @@ import { NotFoundException } from '@nestjs/common';
 describe('MoviesService', () => {
   let service: MoviesService;
 
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [MoviesService],
@@ -15,19 +16,31 @@ describe('MoviesService', () => {
 
     service = module.get<MoviesService>(MoviesService);
   });
+  // nestjs 에서 제공하는 테스트 hook 들도 있으니 추후에 참조.
+  // afterAll()
+  // afterEach()
+  // beforeAll()
+
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
   describe('Create', () => {
+    it('Before Create', () => {
+      const allMovies: Movie[] = service.getAll()
+      expect(allMovies.length).toBe(2)
+    })
+
     it('Create Movie', () => {
+      const allMovies: Movie[] = service.getAll()
       const newMovie = new CreateMovieDto('끝까지 간다', '김감독', 5, 2012, ['Action'])
       const result = service.createMovie(newMovie)
       // @ts-ignore
       const { movie, created } = result;
       expect(movie).toBeDefined()
       expect(created).toBe(true)
+      expect(allMovies.length).toBe(3)
     });
   })
 
@@ -76,11 +89,14 @@ describe('MoviesService', () => {
 
   describe('Delete', () => {
     it ('Delete Movie By ID', () => {
+      const allMovies: Movie[] = service.getAll()
+      expect(allMovies.length).toBe(2)
       const cnt: number = service.removeMovie(1)
       expect(cnt).toBe(1)
+      expect(allMovies.length).toBe(1)
     })
 
-    it ('throw notfound exception', () => {
+    it ('Throw Notfound Exception', () => {
       try {
         service.removeMovie(9999)
       } catch (e) {
