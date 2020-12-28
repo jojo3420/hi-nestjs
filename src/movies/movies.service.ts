@@ -42,22 +42,22 @@ export class MoviesService {
 
   removeMovie(id: number): number {
     const index = this.movies.findIndex(movie => movie.id === id);
-    if (index >= 0) {
-      this.movies.splice(index, 1);
-      return 1;
+    if (index === -1) {
+      throw new NotFoundException();
     }
 
-    return 0;
+    this.movies.splice(index, 1);
+    return 1;
   }
 
   modifyMovie(id: number, movieDto: UpdateMovieDto): Movie {
     const index = this.movies.findIndex(m => m.id === id);
-    if (index >= 0) {
-      this.movies[index] = { ...this.movies[index], ...movieDto };
-      return this.movies[index];
+    if (index === -1) {
+      throw new NotFoundException()
     }
 
-    return null;
+    this.movies[index] = { ...this.movies[index], ...movieDto };
+    return this.movies[index];
   }
 
 }

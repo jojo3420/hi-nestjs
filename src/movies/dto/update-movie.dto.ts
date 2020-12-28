@@ -1,24 +1,32 @@
-// import { IsString, IsNumber, IsOptional } from 'class-validator';
-//
-// export class UpdateMovieDto {
-//
-//   @IsString()
-//   title?: string;
-//
-//   @IsString()
-//   author?: string;
-//
-//   @IsNumber()
-//   year?: number;
-//
-//   @IsNumber()
-//   rating?: number;
-//
-//   @IsOptional()
-//   @IsString({ each: true })
-//   genre?: string[];
-//
-// }
+import { IsString, IsNumber, IsOptional } from 'class-validator';
+
+export class UpdateMovieDto {
+
+  @IsString()
+  title?: string;
+
+  @IsString()
+  author?: string;
+
+  @IsNumber()
+  year?: number;
+
+  @IsNumber()
+  rating?: number;
+
+  @IsOptional()
+  @IsString({ each: true })
+  genre?: string[];
+
+  constructor(title?: string, author?: string, year?: number, rating?: number, genre?: string[]) {
+    this.title = title
+    this.author = author
+    this.year = year
+    this.rating = rating
+    this.genre = genre
+  }
+
+}
 
 
 import { PartialType } from '@nestjs/mapped-types'
@@ -38,6 +46,6 @@ OmitType -입력 유형에서 모든 속성을 선택한 다음 특정 키 세�
 IntersectionType -두 가지 유형을 하나의 새로운 유형 (클래스)으로 결합
 이 기사 에서 더 많은 것을 읽으십시오 .
  */
-export class UpdateMovieDto extends PartialType(CreateMovieDto) {}
+// export class UpdateMovieDto extends PartialType(CreateMovieDto) {}
 
 

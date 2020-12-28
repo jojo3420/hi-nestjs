@@ -18,4 +18,17 @@ export class CreateMovieDto {
   @IsOptional()
   @IsString({ each: true })
   readonly genre: string[];
+
+  constructor(title: string, author: string, year: number, rating: number, genre: string[]) {
+    this.title = title
+    this.author = author
+    this.year = year;
+    this.rating = rating
+    if (Array.isArray(genre)) {
+      this.genre = genre;
+      return;
+    }
+    this.genre = [];
+  }
+
 }
