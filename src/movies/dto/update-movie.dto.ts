@@ -3,28 +3,24 @@ import { IsString, IsNumber, IsOptional } from 'class-validator';
 export class UpdateMovieDto {
 
   @IsString()
+  @IsOptional()
   title?: string;
 
   @IsString()
+  @IsOptional()
   author?: string;
 
   @IsNumber()
+  @IsOptional()
   year?: number;
 
   @IsNumber()
+  @IsOptional()
   rating?: number;
 
   @IsOptional()
   @IsString({ each: true })
   genre?: string[];
-
-  constructor(title?: string, author?: string, year?: number, rating?: number, genre?: string[]) {
-    this.title = title
-    this.author = author
-    this.year = year
-    this.rating = rating
-    this.genre = genre
-  }
 
 }
 

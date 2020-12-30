@@ -7,7 +7,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 export class MoviesService {
   private movies: Movie[] = [
     new Movie(1, '해리포터1', '조앤아줌마'),
-    new Movie(2, '반지의 제왕', '드래곤', 4, 2010, ['SF', '모험']),
+    new Movie(2, 'Ring of King', '드래곤', 4, 2010, ['SF', '모험']),
 
   ];
 
@@ -23,7 +23,7 @@ export class MoviesService {
   }
 
   search(id?: number, title?: string): Movie [] {
-    if (id > 0) {
+    if (id) {
       return this.movies.filter(movie => movie.id === id);
     }
     return this.movies.filter(movie => movie.title === title);
@@ -57,6 +57,7 @@ export class MoviesService {
     }
 
     this.movies[index] = { ...this.movies[index], ...movieDto };
+    // console.log({ movie: this.movies[index]});
     return this.movies[index];
   }
 
